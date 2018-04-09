@@ -1,0 +1,64 @@
+.blockC{
+    background-color:#ff0;  /* 黄 */
+    height:150px;
+    width:150px;
+}
+.u-red{
+    color: red;
+    text-decoration: underline;
+    margin-left: 30px;
+    margin-right: 30px;
+}
+.px150{
+    display: inline-block;
+    width:150px;
+}
+.px200{
+    display: inline-block;
+    width:200px;
+}
+.px250{
+    display: inline-block;
+    width:250px;
+}
+.heightpx80{
+    display: inline-block;
+    height:80px;
+}
+.white{
+    color: white;
+}
+.alignleft{
+    text-align: left;
+}
+.aligncenter{
+    text-align: center;
+}
+.alignright{
+    text-align: right;
+}
+
+.kadomaru1{
+    
+}
+.marginall{
+    margin: 30px 30px 30px 30px;
+}
+
+.margin2{
+    margin-left: 40px;
+    margin-right: 40px;
+}
+.marginright120{
+    margin-right: 120px;
+}
+.margin1313{
+    margin: 10px 30px 10px 30px;
+}
+.marginright120{
+    margin-right:120px;
+}
+.margin7070{
+    margin-left: 70px;
+    margin-right: 70px;
+}
