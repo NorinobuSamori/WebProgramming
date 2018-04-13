@@ -13,7 +13,7 @@
 
     <body>
         <nav class="navbar navbar-dark bg-dark justify-content-end">
-            <span align="right">
+            <span class="alignright">
                 <span class="white">
                     ユーザ名さん
                 </span>

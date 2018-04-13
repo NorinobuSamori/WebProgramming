@@ -6,14 +6,14 @@
 <html lang="ja">
     <head>
         <meta charset="UTF-8">
-        <title>ユーザ情報更新</title>
+        <title>ユーザ情報詳細参照</title>
         <link href="./css/bootstrap.css" rel="stylesheet" type="text/css">
         <link href="./css/css11.css" rel="stylesheet" type="text/css">
     </head>
 
     <body>
         <nav class="navbar navbar-dark bg-dark justify-content-end">
-            <span align="right">
+            <span class="alignright">
                 <span class="white">
                     ユーザ名さん
                 </span>
@@ -25,50 +25,46 @@
         </nav>
         <br>
         <br>
-        <h1 align="center">ユーザ情報更新</h1>
+        <h1 align="center">ユーザ情報詳細参照</h1>
         <br>
         <br>
 
-        <table align="center">
+        <table class="aligncenter">
             <tbody>
                 <tr>
-                    <td>ログインID</td>
-                    <td>id0001</td>
+                    <td>ログインID：</td>
+                    <td><c:out value="${employeeList.login_id}"/></td><!-- employeeの箇所を変数調整すれば、これで合ってるっぽい。ただ、employeeはログインしている右上のユーザ名と一緒でいいとのこと -->
+                </tr>
+
+<!-- セーブしたらエラーが治った  -->
+
+<!-- <p>名前：<c:out value="${param.name}" /></p>
+<p>性別：<c:out value="${param.gender}" /></p>
+<%--このc:out value=""/>がXSS防止カスタムタグ --%>>  -->
+                <tr>
+                    <td>ユーザ名：</td>
+                    <td>${employeeList.name}</td>
                 </tr>
 
                 <tr>
-                    <td>パスワード</td>
-                    <td>
-                        <input type="password" class="form-control" id="exampleInputPassword1">
-                    </td>
+                    <td>生年月日：</td>
+                    <td>${employeeList.birth_date}</td>
                 </tr>
 
                 <tr>
-                    <td>パスワード(確認)</td>
-                    <td>
-                        <input type="password" class="form-control" id="exampleInputPassword1">
-                    </td>
+                    <td>登録日時：</td>
+                    <td>${employeeList.create_date}</td>
                 </tr>
 
                 <tr>
-                    <td>ユーザ名</td>
-                    <td><input type="text" class="form-control"></td>
-                </tr>
-
-                <tr>
-                    <td>生年月日</td>
-                    <td><input type="text" class="form-control"></td>
+                    <td>更新日時：</td>
+                    <td>${employeeList.update_date}</td>
                 </tr>
             </tbody>
         </table>
         <br>
         <br>
-            <div class="text-center">
-                <button type="submit">
-                    <span class="margin2">更新</span>
-                </button>
-        </div>
-        <br>
+
         <br>
         <br>
         <div class="margin2">
@@ -78,4 +74,5 @@
 
     </body>
 </html>
+
 

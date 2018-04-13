@@ -36,8 +36,11 @@ public class UserInfoDetailServlet extends HttpServlet {
 
 		// TODO 未実装：ログインセッションがある場合、ユーザ一覧画面にリダイレクトさせる
 
+
+		////ここが実装されていない
+
 		// フォワード
-		RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/userInfoDetailServlet.jsp");
+		RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/userInfoDetail.jsp");
 		dispatcher.forward(request, response);
 	}
 
@@ -49,16 +52,12 @@ public class UserInfoDetailServlet extends HttpServlet {
 			throws ServletException, IOException {
 
 		// リクエストパラメータの入力項目を取得
-		String login_id = request.getParameter("login_id");
-		String name = request.getParameter("name");
-		String birth_date = request.getParameter("birth_date");
-		String create_date = request.getParameter("create_date");
-		String update_date = request.getParameter("update_date");
+		String id = request.getParameter("id");
 
 		// リクエストパラメータの入力項目を引数に渡して、Daoのメソッドを実行
 		EmployeeDao employeeDao = new EmployeeDao();
-		employeeDao.findByDetailInfo(login_id, name, birth_date, create_date, update_date);
-////		Employee employee = employeeDao.findByLoginInfo(login_id, password);
+		employeeDao.findByDetailInfo(id);
+////Employee employee = employeeDao.findByLoginInfo(login_id, password);
 ////EmployeeDao.findByLoginInfo(loginId, password);のEmployeeDaoはエラーになるので要注意。正しくはemployeeDaoである。
 
 

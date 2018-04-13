@@ -32,7 +32,7 @@
             <span class="nav justify-content-end margin2">
                 <a href="???????">新規登録</a>
             </span>
-            <table align="center">
+            <table class="aligncenter">
                 <tbody>
                     <tr>
                         <td>ログインID</td>
@@ -70,7 +70,7 @@
         </form>
         <hr>
         <!-- ------------------------------------------------------------------------  -->
-        <table align="center" class="table">
+        <table class="aligncenter" class="table">
             <thead class="thead-dark">
                 <tr>
                     <th scope="col">login_id</th>

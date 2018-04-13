@@ -39,7 +39,7 @@ public class EmployeeListServlet extends HttpServlet {
 
 
 		// リクエストスコープにユーザ一覧情報をセット
-		request.setAttribute("employeeList", employeeList);
+		request.setAttribute("employeeList", employeeList);////"employeeList"を取りました
 
 		// ユーザ一覧のjspにフォワード
 		RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/useritiran.jsp");
