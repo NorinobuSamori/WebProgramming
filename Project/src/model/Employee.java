@@ -14,21 +14,28 @@ public class Employee {
 ////private Date birthDate;これを記入しただけでDate型のエラーが消えた。謎。
 
 	// ログインセッションを保存するためのコンストラクタ
-		public Employee(String login_id, String name) {
-			this.login_id = login_id;
-			this.name = name;
-		}
+	public Employee(String login_id, String name) {
+		this.login_id = login_id;
+		this.name = name;
+	}
 
 	public Employee(int id, String login_id , String name , Date birth_date ,String password , String create_date ,
 				String update_date){
-			this.id = id;
-			this.login_id = login_id;
-			this.name = name;
-			this.birth_date = birth_date;
-			this.password = password;
-			this.create_date = create_date;
-			this.update_date = update_date;
-			}
+	this.id = id;
+	this.login_id = login_id;
+	this.name = name;
+	this.birth_date = birth_date;
+	this.password = password;
+	this.create_date = create_date;
+	this.update_date = update_date;
+	}
+
+	public Employee(String login_id, String password, String name, Date birth_date) {
+		this.login_id = login_id;
+		this.name = name;
+		this.birth_date = birth_date;
+		this.password = password;
+	}
 
 	////(int id, String login_id , String name , String birth_date ,String password , String create_date ,
 ////	String update_date){の箇所に色がつかなくて焦ったが、下記のthis.を全て直したら光った。よかったよかった。

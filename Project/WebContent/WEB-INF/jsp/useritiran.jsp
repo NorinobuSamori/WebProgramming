@@ -69,45 +69,31 @@
             </div>
         </form>
         <hr>
-        <table align="center" class="table">>
+        <!-- ------------------------------------------------------------------------  -->
+        <table align="center" class="table">
             <thead class="thead-dark">
                 <tr>
-                    <th scope="col">#</th>
-                    <th scope="col">First</th>
-                    <th scope="col">Last</th>
-                    <th scope="col">Handle</th>
+                    <th scope="col">login_id</th>
+                    <th scope="col">name</th>
+                    <th scope="col">birth_date</th>
+                    <th scope="col">リンクボタン</th>
                 </tr>
             </thead>
-            <tbody>
-                <tr>
-                    <td>id0001</td>
-                    <td>田中太郎</td>
-                    <td>1989年04月26日</td>
-                    <td><button type="button" class="btn btn-primary">詳細</button>
-                        <button type="button" class="btn btn-success">更新</button>
-                        <button type="button" class="btn btn-danger">削除</button>
-                    </td>
-                </tr>
-                <tr>
-                    <td>id0002</td>
-                    <td>佐藤二郎</td>
-                    <td>2001年11月12日</td>
-                    <td>
-                        <button type="button" class="btn btn-primary">詳細</button>
-                        <button type="button" class="btn btn-success">更新</button>
-                        <button type="button" class="btn btn-danger">削除</button>
-                    </td>
-                </tr>
-                <tr>
-                    <td>id0003</td>
-                    <td>佐川真司</td>
-                    <td>2000年01月01日</td>
-                    <td><button type="button" class="btn btn-primary">詳細</button>
-                        <button type="button" class="btn btn-success">更新</button>
-                        <button type="button" class="btn btn-danger">削除</button>
-                    </td>
-                </tr>
-            </tbody>
+               <tbody>
+                 <c:forEach var="employee" items="${employeeList}" ><!-- //// useritiranではないということに注意  -->
+                   <tr>
+                     <td>${employee.login_id}</td>
+                     <td>${employee.name}</td>
+                     <td>${employee.birth_date}</td>
+                     <!-- TODO 未実装；ログインボタンの表示制御を行う -->
+                     <td>
+                       <a class="btn btn-primary" href="UserInfoDetailServlet?id=${employee.id}">詳細</a>
+                       <a class="btn btn-success" href="UserInfoUpdateServlet?id=${employee.id}">更新</a>
+                       <a class="btn btn-danger" href ="UserInfoDeleteServlet?id=${employee.id}">削除</a>
+                     </td>
+                   </tr>
+                 </c:forEach>
+               </tbody>
         </table>
     </body>
 </html>
