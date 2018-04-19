@@ -78,6 +78,7 @@ public class EmployeeDao {
             ResultSet rs = stmt.executeQuery(sql);
             // 結果表に格納されたレコードの内容を
             // Employeeインスタンスに設定し、ArrayListインスタンスに追加
+
             while (rs.next()) {
                 int id = rs.getInt("id");
                 String login_id = rs.getString("login_id");
@@ -158,7 +159,7 @@ public class EmployeeDao {
 ////●UserInfoDetailシリーズ用
 ////モデルはEmployeeDao.Signup
 
-    public void findByDetailInfo(String login_Id) {
+    public Employee findByDetailInfo(String id) {
         Connection conn = null;
         try {
             // データベースへ接続
@@ -166,7 +167,7 @@ public class EmployeeDao {
 
             // SELECT文を準備
 //非推奨            String sql = "SELECT id, name, age FROM employee WHERE id = " + targetId;
-            String sql = "SELECT * FROM user WHERE login_id = ?";
+            String sql = "SELECT * FROM user WHERE id = ?";
 
 
 
@@ -174,14 +175,25 @@ public class EmployeeDao {
 //非推奨        Statement stmt = conn.createStatement();
 //非推奨        ResultSet rs = stmt.executeQuery(sql);
             PreparedStatement pStmt = conn.prepareStatement(sql);
-            pStmt.setString(1, login_Id);
-            ////findByDetailInfo(){}の中身の変数宣言をしないと、pStmtsetString(数字, xxxxxx)等の部分でエラーが起きるので、混乱しないように注意。
+            pStmt.setString(1, id);
+////findByDetailInfo(){}の中身の変数宣言をしないと、pStmtsetString(数字, xxxxxx)等の部分でエラーが起きるので、混乱しないように注意。
+            ResultSet rs = pStmt.executeQuery();
+
+            if (!rs.next()) {////1行であるはずなのに2行あったらよくないからnext()
+                return null;
+            }
 
 
-            pStmt.executeQuery();
+            int id2 = rs.getInt("id");
+            String login_id = rs.getString("login_id");
+            String name = rs.getString("name");
+            Date birth_date = rs.getDate("birth_date");
+            String password = rs.getString("password");
+            String create_date = rs.getString("create_date");
+            String update_date = rs.getString("update_date");
+            Employee employee = new Employee(id2, login_id, name, birth_date, password, create_date, update_date);////値を渡しているのではなく、引っ張っているらしい。
 
-
-
+            return employee;
 
         } catch (SQLException e) {
             e.printStackTrace();
@@ -200,17 +212,15 @@ public class EmployeeDao {
             }
 
         }
+        return null;
     }
 
 /////-------------------------------------------------------------------------------------------------------------
-////今はパスしたほうがいい
 ////UserInfoUpdateシリーズ用
 ////モデルはEmployeeDao.SignUpシリーズ
 
 
-////なお、login_idの箇所が、DetailInfo技術を必要としている可能性あり
-
-    public void findByInfoUpdate(String login_Id, String password, String name, String birth_date ) {////Employeeがvoidになりました
+    public void byUpdateInfo(String login_Id, String password, String name, String birth_date ) {////Employee→voidへ
         Connection conn = null;
         try {
             // データベースへ接続
@@ -218,7 +228,7 @@ public class EmployeeDao {
 
             // SELECT文を準備
 //非推奨            String sql = "SELECT id, name, age FROM employee WHERE id = " + targetId;
-            String sql = "INSERT INTO user (login_id, name, password, birth_date, create_date, update_date) VALUES (?, ?, ?, ?, now(), now())";
+            String sql = "UPDATE user SET password = ?, name= ?, birth_date= ?, update_date = now() where login_id = ? ";
 
 
 
@@ -255,7 +265,50 @@ public class EmployeeDao {
     }
 
 //////---------------------------------------------------------------------------------------------
-////UserInfoDeleteシリーズ用、現在はパスしております
+////UserInfoDeleteシリーズ用
+////モデルはEmployeeDao.findByInfoUpdate
+
+    public void findByDeleteInfo(String id){////Employeeがvoidに
+        Connection conn = null;
+        try {
+            // データベースへ接続
+            conn = DBManager.getConnection();
+
+            // SELECT文を準備
+//非推奨            String sql = "SELECT id, name, age FROM employee WHERE id = " + targetId;
+            String sql = "DELETE from user where id = ?";
+////update文にwhere id=Xを入れる
+
+
+             // SELECTを実行し、結果表を取得
+//非推奨        Statement stmt = conn.createStatement();
+//非推奨        ResultSet rs = stmt.executeQuery(sql);
+            PreparedStatement pStmt = conn.prepareStatement(sql);
+            pStmt.setString(1, id);
+            pStmt.executeUpdate();
+
+
+
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+            System.out.println("SQLException e    e.printStackTrace();  11111");
+
+        } finally {
+            // データベース切断
+        	if (conn != null) {
+                try {
+                    conn.close();
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                    System.out.println("SQLException e    e.printStackTrace(); 22222");
+
+                }
+            }
+
+        }
+    }
+
 
 /////-------------------------------------------------------------------------------------------------------------
 }

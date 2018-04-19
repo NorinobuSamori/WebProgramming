@@ -28,13 +28,16 @@
             ユーザ削除確認
         </h1>
         <div class="aligncenter">
-        ログインID：id0001
+        ログインID：<c:out value="${employeeInfo.login_id}"/>
         <br>を本当に削除してもよろしいでしょうか。
         <br>
         <br>
         <br>
+            <form action="EmployeeListServlet" method="get">
+                <button type="submit" class="marginall" name="cancel"><span class="margin2">キャンセル</span></button>
+            </form>
             <form action="UserInfoDeleteServlet" method="post">
-                <button type="submit" class="marginall"><span class="margin2">キャンセル</span></button>
+                <input type="hidden" class="marginall" name="id" value="${employeeInfo.id}"><!-- name="id"が必要だった なお、OKボタンは合ってた -->
                 <button type="submit" class="marginall"><span class="margin2">ＯＫ</span></button>
             </form>
         </div>

@@ -12,6 +12,11 @@
     </head>
 
     <body>
+    <c:if test="${errMsg != null}" >
+	    <div class="alert alert-danger" role="alert">
+		  ${errMsg}
+		</div>
+	</c:if>
         <nav class="navbar navbar-dark bg-dark justify-content-end">
             <span class="alignright">
                 <span class="white">
@@ -30,11 +35,13 @@
         <br>
 
 		<form action="UserInfoUpdateServlet" method="post">
+		<input type="hidden" class="marginall" name="id" value="${employeeInfo.id}">
+
         <table class="aligncenter">
             <tbody>
                 <tr>
                     <td>ログインID</td>
-                    <td>${employee.login_id}</td>
+                    <td>${employeeInfo.login_id}</td>
                 </tr>
 
                 <tr>

@@ -33,32 +33,30 @@
             <tbody>
                 <tr>
                     <td>ログインID：</td>
-                    <td><c:out value="${employeeList.login_id}"/></td><!-- employeeの箇所を変数調整すれば、これで合ってるっぽい。ただ、employeeはログインしている右上のユーザ名と一緒でいいとのこと -->
+                    <td><c:out value="${employeeInfo.login_id}"/></td>
                 </tr>
-
-<!-- セーブしたらエラーが治った  -->
 
 <!-- <p>名前：<c:out value="${param.name}" /></p>
 <p>性別：<c:out value="${param.gender}" /></p>
 <%--このc:out value=""/>がXSS防止カスタムタグ --%>>  -->
                 <tr>
                     <td>ユーザ名：</td>
-                    <td>${employeeList.name}</td>
+                    <td>${employeeInfo.name}</td>
                 </tr>
 
                 <tr>
                     <td>生年月日：</td>
-                    <td>${employeeList.birth_date}</td>
+                    <td>${employeeInfo.birth_date}</td>
                 </tr>
 
                 <tr>
                     <td>登録日時：</td>
-                    <td>${employeeList.create_date}</td>
+                    <td>${employeeInfo.create_date}</td>
                 </tr>
 
                 <tr>
                     <td>更新日時：</td>
-                    <td>${employeeList.update_date}</td>
+                    <td>${employeeInfo.update_date}</td>
                 </tr>
             </tbody>
         </table>

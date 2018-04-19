@@ -70,7 +70,7 @@
         </form>
         <hr>
         <!-- ------------------------------------------------------------------------  -->
-        <table class="aligncenter" class="table">
+        <table class="table table-striped">
             <thead class="thead-dark">
                 <tr>
                     <th scope="col">login_id</th>

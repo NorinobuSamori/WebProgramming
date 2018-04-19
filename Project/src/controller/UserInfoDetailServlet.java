@@ -10,8 +10,10 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import dao.EmployeeDao;
+import model.Employee;
 
 /**
  * Servlet implementation class LoginServlet
@@ -35,9 +37,18 @@ public class UserInfoDetailServlet extends HttpServlet {
 			throws ServletException, IOException {
 
 		// TODO 未実装：ログインセッションがある場合、ユーザ一覧画面にリダイレクトさせる
+		
+		
+		String id = request.getParameter("id");
 
 
-		////ここが実装されていない
+		// リクエストパラメータの入力項目を引数に渡して、Daoのメソッドを実行
+		EmployeeDao employeeDao = new EmployeeDao();
+		Employee employeeDetail = employeeDao.findByDetailInfo(id);
+
+		HttpSession session = request.getSession();
+		session.setAttribute("employeeInfo", employeeDetail);
+
 
 		// フォワード
 		RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/userInfoDetail.jsp");
@@ -56,17 +67,14 @@ public class UserInfoDetailServlet extends HttpServlet {
 
 		// リクエストパラメータの入力項目を引数に渡して、Daoのメソッドを実行
 		EmployeeDao employeeDao = new EmployeeDao();
-		employeeDao.findByDetailInfo(id);
+		Employee employeeDetail = employeeDao.findByDetailInfo(id);
+
 ////Employee employee = employeeDao.findByLoginInfo(login_id, password);
 ////EmployeeDao.findByLoginInfo(loginId, password);のEmployeeDaoはエラーになるので要注意。正しくはemployeeDaoである。
 
 
-		/** エラーが起きなかった場合 **/
-		// セッションにユーザの情報をセット
-
-
 		// ユーザ一覧のサーブレットにリダイレクト
-		response.sendRedirect("EmployeeListServlet");
+		response.sendRedirect("UserInfoDetailServlet");
 
 	}
 

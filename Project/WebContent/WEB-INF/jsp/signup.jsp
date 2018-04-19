@@ -12,6 +12,11 @@
     </head>
 
     <body>
+    <c:if test="${errMsg != null}" >
+	    <div class="alert alert-danger" role="alert">
+		  ${errMsg}
+		</div>
+	</c:if>
         <nav class="navbar navbar-dark bg-dark justify-content-end">
             <span class="alignright">
                 <span class="white">

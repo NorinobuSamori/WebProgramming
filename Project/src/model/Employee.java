@@ -29,12 +29,27 @@ public class Employee {
 	this.create_date = create_date;
 	this.update_date = update_date;
 	}
+	
+	public Employee(int login_id, String name , Date birth_date , String create_date , String update_date){
+	this.id = login_id;
+	this.name = name;
+	this.birth_date = birth_date;
+	this.create_date = create_date;
+	this.update_date = update_date;
+	}
+	
 
 	public Employee(String login_id, String password, String name, Date birth_date) {
 		this.login_id = login_id;
 		this.name = name;
 		this.birth_date = birth_date;
 		this.password = password;
+	}
+
+	public Employee(String password, String name, Date birth_date) {
+		this.password = password;
+		this.name = name;
+		this.birth_date = birth_date;
 	}
 
 	////(int id, String login_id , String name , String birth_date ,String password , String create_date ,
