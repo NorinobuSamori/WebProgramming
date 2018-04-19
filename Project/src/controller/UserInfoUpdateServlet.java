@@ -41,20 +41,7 @@ public class UserInfoUpdateServlet extends HttpServlet {
 
 		// リクエストパラメータの入力項目を取得
 		String id = request.getParameter("id");
-		String login_id = request.getParameter("login_id");
-		String password1 = request.getParameter("password1");
-		String password2 = request.getParameter("password2");
-		String name = request.getParameter("name");
-		String birth_date = request.getParameter("birth_date");
 
-		if(!password1.equals(password2)) {////	!=ではないので要注意
-			request.setAttribute("errMsg", "パスワードと確認用パスワードが一致しておりません");
-
-			//フォワード
-			RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/userInfoUpdate.jsp");
-			dispatcher.forward(request, response);
-			return;
-		}
 
 		EmployeeDao employeeDao = new EmployeeDao();
 		Employee employeeDetail = employeeDao.findByDetailInfo(id);
@@ -62,10 +49,6 @@ public class UserInfoUpdateServlet extends HttpServlet {
 		HttpSession session = request.getSession();
 		session.setAttribute("employeeInfo", employeeDetail);
 
-
-		// リクエストパラメータの入力項目を引数に渡して、Daoのメソッドを実行
-		EmployeeDao employeeDao2 = new EmployeeDao();
-		employeeDao2.byUpdateInfo(login_id, password1, name, birth_date);
 ////		Employee employee = employeeDao.findByLoginInfo(login_id, password);
 ////EmployeeDao.findByLoginInfo(loginId, password);のEmployeeDaoはエラーになるので要注意。正しくはemployeeDaoである。
 

@@ -36,7 +36,7 @@
 
 		<form action="UserInfoUpdateServlet" method="post">
 		<input type="hidden" class="marginall" name="id" value="${employeeInfo.id}">
-
+		<input type="hidden" class="marginall" name="login_id" value="${employeeInfo.login_id}">
         <table class="aligncenter">
             <tbody>
                 <tr>

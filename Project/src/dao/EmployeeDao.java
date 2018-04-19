@@ -235,19 +235,26 @@ public class EmployeeDao {
              // SELECTを実行し、結果表を取得
 //非推奨        Statement stmt = conn.createStatement();
 //非推奨        ResultSet rs = stmt.executeQuery(sql);
-            PreparedStatement pStmt = conn.prepareStatement(sql);
-            pStmt.setString(1, login_Id);
-            pStmt.setString(2, name);
-            pStmt.setString(3, password);
-            pStmt.setString(4, birth_date);
-            pStmt.executeUpdate();
+//            PreparedStatement pStmt = conn.prepareStatement(sql);
+//            pStmt.setString(1, login_Id);
+//            pStmt.setString(2, name);
+//            pStmt.setString(3, password);
+//            pStmt.setString(4, birth_date);
+//            pStmt.executeUpdate();
 
+            PreparedStatement pStmt = conn.prepareStatement(sql);
+            pStmt.setString(1, password);
+            pStmt.setString(2, name);
+            pStmt.setString(3, birth_date);
+            pStmt.setString(4, login_Id);
+            pStmt.executeUpdate();
+/////順番は関係あり
 
 
 
         } catch (SQLException e) {
             e.printStackTrace();
-            System.out.println("SQLException e    e.printStackTrace();  11111");
+            System.out.println("SQLException e    e.printStackTrace();  9999");
 
         } finally {
             // データベース切断
@@ -256,7 +263,7 @@ public class EmployeeDao {
                     conn.close();
                 } catch (SQLException e) {
                     e.printStackTrace();
-                    System.out.println("SQLException e    e.printStackTrace(); 22222");
+                    System.out.println("SQLException e    e.printStackTrace(); 10101010");
 
                 }
             }
