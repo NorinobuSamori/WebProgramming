@@ -13,39 +13,41 @@
     </head>
 
     <body>
-    <c:if test="${errMsg != null}" >
-	    <div class="alert alert-danger" role="alert">
-		  ${errMsg}
-		</div>
-	</c:if>
+        <br>
+        <br>
+        <h1 class="aligncenter">ログイン画面</h1>
+        <c:if test="${errMsg != null}" >
+	    	<div class="alert alert-danger" role="alert">
+		  		${errMsg}
+			</div>
+		</c:if>
 
         <br>
         <br>
-        <h1 align="center">ログイン画面</h1>
-        <br>
-        <br>
         <form action="LoginServlet" method="post">
-        <table align="center">
-            <tbody>
-                <tr>
-                    <td>ログインID</td>
-                    <td>
-                        <div class="form-group">
-                            <label for="exampleInputEmail1"></label>
-                            <input type="login_id" class="form-control" id="exampleInputLoginId" aria-describedby="LoginIdHelp"  placeholder="Enter ID" required name="login_id">
-                        </div>
-                    </td>
-                </tr>
-                <tr>
-                    <td>パスワード</td>
-                    <td> <div class="form-group">
-                        <label for="exampleInputPassword1"></label>
-                        <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password" required name="password">
-                        </div>
-                    </td>
-                </tr>
-            </tbody>
-        </table>
+        <div class="nav justify-content-center">
+	        <table>
+	            <tbody>
+	                <tr>
+	                    <td><span  class="marginright120">ログインID</span></td>
+	                    <td>
+	                        <div class="form-group">
+	                            <label for="exampleInputEmail1"></label>
+	                            <input type="text" class="form-control" id="exampleInputLoginId" aria-describedby="LoginIdHelp"  placeholder="Enter ID" required name="login_id">
+	                        </div>
+	                    </td>
+	                </tr>
+	                <tr>
+	                    <td>パスワード</td>
+	                    <td> <div class="form-group">
+	                        <label for="exampleInputPassword1"></label>
+	                        <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password" required name="password">
+	                        </div>
+	                    </td>
+	                </tr>
+	            </tbody>
+	        </table>
+        </div>
         <br>
         <div class="text-center">
             <button type="submit">

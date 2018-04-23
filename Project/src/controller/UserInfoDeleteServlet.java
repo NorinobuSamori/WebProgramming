@@ -37,13 +37,20 @@ public class UserInfoDeleteServlet extends HttpServlet {
 			throws ServletException, IOException {
 
 		// TODO 未実装：ログインセッションがある場合、ユーザ一覧画面にリダイレクトさせる
+		HttpSession session = request.getSession();
+		Employee em = (Employee)session.getAttribute("employeeInfo");
+		if(em == null){
+				System.out.println("リダイレクト");
+				response.sendRedirect("LoginServlet");
+				return;
+		}
+
 
 		String id = request.getParameter("id");
 
 		EmployeeDao employeeDao = new EmployeeDao();
 		Employee employeeDetail = employeeDao.findByDetailInfo(id);
 
-		HttpSession session = request.getSession();
 		session.setAttribute("employeeInfo", employeeDetail);
 
 		// フォワード

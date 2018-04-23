@@ -12,17 +12,12 @@
     </head>
 
     <body>
-    <c:if test="${errMsg != null}" >
-	    <div class="alert alert-danger" role="alert">
-		  ${errMsg}
-		</div>
-	</c:if>
         <nav class="navbar navbar-dark bg-dark justify-content-end">
             <span class="alignright">
                 <span class="white">
-                    ユーザ名さん
+                    ${employeeInfo.name}
                 </span>
-                <a href="??" class="u-red" >
+                <a href="LogoutServlet" class="u-red" >
                     ログアウト
                 </a>
 
@@ -31,44 +26,51 @@
         <br>
         <br>
         <h1 align="center">ユーザ情報更新</h1>
+        <c:if test="${errMsg != null}" >
+	    	<div class="alert alert-danger" role="alert">
+		  		${errMsg}
+			</div>
+		</c:if>
         <br>
         <br>
 
 		<form action="UserInfoUpdateServlet" method="post">
 		<input type="hidden" class="marginall" name="id" value="${employeeInfo.id}">
 		<input type="hidden" class="marginall" name="login_id" value="${employeeInfo.login_id}">
-        <table class="aligncenter">
-            <tbody>
-                <tr>
-                    <td>ログインID</td>
-                    <td>${employeeInfo.login_id}</td>
-                </tr>
+		<div class="nav justify-content-center">
+	        <table>
+	            <tbody>
+	                <tr>
+	                    <td><span  class="marginright120">ログインID</span></td>
+	                    <td>${employeeInfo.login_id}</td>
+	                </tr>
 
-                <tr>
-                    <td>パスワード</td>
-                    <td>
-                        <input type="password" class="form-control" id="exampleInputPassword1" name="password1">
-                    </td>
-                </tr>
+	                <tr>
+	                    <td>パスワード</td>
+	                    <td>
+	                        <input type="password" class="form-control" id="exampleInputPassword1" name="password1" >
+	                    </td>
+	                </tr>
 
-                <tr>
-                    <td>パスワード(確認)</td>
-                    <td>
-                        <input type="password" class="form-control" id="exampleInputPassword2" name="password2">
-                    </td>
-                </tr>
+	                <tr>
+	                    <td>パスワード(確認)</td>
+	                    <td>
+	                        <input type="password" class="form-control" id="exampleInputPassword2" name="password2">
+	                    </td>
+	                </tr>
 
-                <tr>
-                    <td>ユーザ名</td>
-                    <td><input type="text" class="form-control" name="name"></td>
-                </tr>
+	                <tr>
+	                    <td>ユーザ名</td>
+	                    <td><input type="text" class="form-control" name="name" value="${employeeInfo.name}"></td>
+	                </tr>
 
-                <tr>
-                    <td>生年月日</td>
-                    <td><input type="date" class="form-control" name="birth_date"></td>
-                </tr>
-            </tbody>
-        </table>
+	                <tr>
+	                    <td>生年月日</td>
+	                    <td><input type="date" class="form-control" name="birth_date" value="${employeeInfo.birth_date}"></td>
+	                </tr>
+	            </tbody>
+	        </table>
+	    </div>
         <br>
         <br>
             <div class="text-center">
@@ -81,7 +83,7 @@
         <br>
         <br>
         <div class="margin2">
-            <a href="???????">戻る</a>
+            <a href="EmployeeListServlet">戻る</a>
         </div>
 
 

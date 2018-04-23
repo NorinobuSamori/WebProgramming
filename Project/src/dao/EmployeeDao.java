@@ -1,5 +1,9 @@
 package dao;
 
+import java.nio.charset.Charset;
+import java.nio.charset.StandardCharsets;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -8,6 +12,8 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+
+import javax.xml.bind.DatatypeConverter;
 
 import model.Employee;
 
@@ -30,7 +36,7 @@ public class EmployeeDao {
 //非推奨        ResultSet rs = stmt.executeQuery(sql);
             PreparedStatement pStmt = conn.prepareStatement(sql);
             pStmt.setString(1, login_Id);
-            pStmt.setString(2, password);
+            pStmt.setString(2, ConvertMD5(password));
             ResultSet rs = pStmt.executeQuery();
 
 
@@ -109,10 +115,62 @@ public class EmployeeDao {
         return empList;
     }
 
+////-----------------------------------------------------------------------------------------------------------
+    public List<Employee> findSearch(String loginId) {
+        Connection conn = null;
+        List<Employee> empList = new ArrayList<Employee>();
+
+        try {
+            // データベースへ接続
+            conn = DBManager.getConnection();
+
+            // SELECT文を準備
+            String sql = "SELECT * FROM user where login_id not in ('admin')";
+
+            if(!loginId.equals("")) {
+            	sql += " and login_id = '" + loginId + "'";
+            }
+
+             // SELECTを実行し、結果表を取得
+            Statement stmt = conn.createStatement();
+            ResultSet rs = stmt.executeQuery(sql);
+            // 結果表に格納されたレコードの内容を
+            // Employeeインスタンスに設定し、ArrayListインスタンスに追加
+
+            while (rs.next()) {
+                int id = rs.getInt("id");
+                String login_id = rs.getString("login_id");
+                String name = rs.getString("name");
+                Date birth_date = rs.getDate("birth_date");
+                String password = rs.getString("password");
+                String create_date = rs.getString("create_date");
+                String update_date = rs.getString("update_date");
+                Employee employee = new Employee(id, login_id, name, birth_date, password, create_date, update_date);
+                empList.add(employee);
+            }
+//return new Employee(id, login_id, name, birth_date, password, create_date, update_date);
+        } catch (SQLException e) {
+            e.printStackTrace();
+            System.out.println("SQLException e　から　e.printStackTrace();");
+            return null;
+        } finally {
+            // データベース切断
+            if (conn != null) {
+                try {
+                    conn.close();
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                    return null;
+                }
+            }
+        }
+        return empList;
+    }
+
 ////---------------------------------------------------------------------------------------------------------------
     ////SignUpシリーズ用
 
-    public void SignUpInfo(String login_Id, String password, String name, String birth_date ) {////Employeeがvoidになりました
+    public boolean SignUpInfo(String login_Id, String password, String name, String birth_date ) {////Employeeがvoidになりました
         Connection conn = null;
         try {
             // データベースへ接続
@@ -130,16 +188,16 @@ public class EmployeeDao {
             PreparedStatement pStmt = conn.prepareStatement(sql);
             pStmt.setString(1, login_Id);
             pStmt.setString(2, name);
-            pStmt.setString(3, password);
+            pStmt.setString(3, ConvertMD5(password));
             pStmt.setString(4, birth_date);
             pStmt.executeUpdate();
-
-
 
 
         } catch (SQLException e) {
             e.printStackTrace();
             System.out.println("SQLException e    e.printStackTrace();  11111");
+
+			return false;
 
         } finally {
             // データベース切断
@@ -154,6 +212,7 @@ public class EmployeeDao {
             }
 
         }
+		return true;
     }
 /////-------------------------------------------------------------------------------------------------------------
 ////●UserInfoDetailシリーズ用
@@ -243,7 +302,7 @@ public class EmployeeDao {
 //            pStmt.executeUpdate();
 
             PreparedStatement pStmt = conn.prepareStatement(sql);
-            pStmt.setString(1, password);
+            pStmt.setString(1, ConvertMD5(password));
             pStmt.setString(2, name);
             pStmt.setString(3, birth_date);
             pStmt.setString(4, login_Id);
@@ -314,6 +373,26 @@ public class EmployeeDao {
             }
 
         }
+    }
+
+////------------------------------------------------------------------------------------------------------------
+
+    private String ConvertMD5(String password) {
+    	//ハッシュ生成前にバイト配列に置き換える際のCharset
+    	Charset charset = StandardCharsets.UTF_8;
+    	//ハッシュアルゴリズム
+    	String algorithm = "MD5";
+
+    	//ハッシュ生成処理
+    	byte[] bytes = null;
+		try {
+			bytes = MessageDigest.getInstance(algorithm).digest(password.getBytes(charset));
+		} catch (NoSuchAlgorithmException e) {
+			e.printStackTrace();
+		}
+    	String result = DatatypeConverter.printHexBinary(bytes);
+    	//標準出力
+    	return result;
     }
 
 

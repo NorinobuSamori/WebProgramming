@@ -34,7 +34,15 @@ public class LoginServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 
+
 		// TODO 未実装：ログインセッションがある場合、ユーザ一覧画面にリダイレクトさせる
+		HttpSession session = request.getSession();
+		Employee em = (Employee)session.getAttribute("employeeInfo");
+		if(em != null){
+				System.out.println("一覧リダイレクト");
+				response.sendRedirect("EmployeeListServlet");
+				return;
+		}
 
 		// フォワード
 		RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/login.jsp");
@@ -60,7 +68,7 @@ public class LoginServlet extends HttpServlet {
 		/** テーブルに該当のデータが見つからなかった場合 **/
 		if (employee == null) {
 			// リクエストスコープにエラーメッセージをセット
-			request.setAttribute("errMsg", "ログインに失敗しました。");
+			request.setAttribute("errMsg", "ログインIDまたはパスワードが異なります");
 
 			// ログインjspにフォワード
 			RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/login.jsp");

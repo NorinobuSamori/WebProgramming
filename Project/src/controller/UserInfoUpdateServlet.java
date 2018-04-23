@@ -37,6 +37,13 @@ public class UserInfoUpdateServlet extends HttpServlet {
 			throws ServletException, IOException {
 
 		// TODO 未実装：ログインセッションがある場合、ユーザ一覧画面にリダイレクトさせる
+		HttpSession session = request.getSession();
+		Employee em = (Employee)session.getAttribute("employeeInfo");
+		if(em == null){
+				System.out.println("リダイレクト");
+				response.sendRedirect("LoginServlet");
+				return;
+		}
 
 
 		// リクエストパラメータの入力項目を取得
@@ -46,7 +53,6 @@ public class UserInfoUpdateServlet extends HttpServlet {
 		EmployeeDao employeeDao = new EmployeeDao();
 		Employee employeeDetail = employeeDao.findByDetailInfo(id);
 
-		HttpSession session = request.getSession();
 		session.setAttribute("employeeInfo", employeeDetail);
 
 ////		Employee employee = employeeDao.findByLoginInfo(login_id, password);
@@ -65,6 +71,8 @@ public class UserInfoUpdateServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 
+        request.setCharacterEncoding("UTF-8");
+
 		// リクエストパラメータの入力項目を取得
 		String id = request.getParameter("id");
 		String login_id = request.getParameter("login_id");
@@ -72,6 +80,14 @@ public class UserInfoUpdateServlet extends HttpServlet {
 		String password2 = request.getParameter("password2");
 		String name = request.getParameter("name");
 		String birth_date = request.getParameter("birth_date");
+
+		if(id.equals("") || login_id.equals("") || name.equals("") || birth_date.equals("")){
+			request.setAttribute("errMsg", "入力された内容は正しくありません");
+			RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/userInfoUpdate.jsp");
+			dispatcher.forward(request, response);
+			return;
+		}
+//		password1.equals("") || password2.equals("") || 
 
 		if(!password1.equals(password2)) {////	!=ではないので要注意
 			request.setAttribute("errMsg", "パスワードと確認用パスワードが一致しておりません");
