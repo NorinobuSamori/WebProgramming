@@ -36,7 +36,7 @@ public class EmployeeListServlet extends HttpServlet {
 
 
 		// TODO 未実装：ログインセッションがない場合、ログイン画面にリダイレクトさせる
-		Employee em = (Employee)session.getAttribute("employeeInfo");
+		Employee em = (Employee)session.getAttribute("employeeAccount");
 		if(em == null){
 				System.out.println("リダイレクト");
 				response.sendRedirect("LoginServlet");
@@ -61,7 +61,27 @@ public class EmployeeListServlet extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.setCharacterEncoding("UTF-8");
+
+
+		String login_id = request.getParameter("login_id");
+		String name = request.getParameter("name");
+		String calendar1 = request.getParameter("calendar1");
+		String calendar2 = request.getParameter("calendar2");
+
+
 	// TODO  未実装：検索処理全般
+
+		EmployeeDao employeeDao = new EmployeeDao();
+		List<Employee> searchList = employeeDao.findSearch(login_id, name, calendar1, calendar2);
+
+		// リクエストスコープにユーザ一覧情報をセット
+		request.setAttribute("employeeList", searchList);
+
+
+		// ユーザ一覧のjspにフォワード
+		RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/useritiran.jsp");
+		dispatcher.forward(request, response);
+
 	}
 
 }

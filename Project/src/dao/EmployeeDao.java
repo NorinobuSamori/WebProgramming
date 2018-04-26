@@ -77,7 +77,7 @@ public class EmployeeDao {
             conn = DBManager.getConnection();
 
             // SELECT文を準備
-            String sql = "SELECT * FROM user";
+            String sql = "SELECT * FROM user where login_id not in ('admin')";
 
              // SELECTを実行し、結果表を取得
             Statement stmt = conn.createStatement();
@@ -116,7 +116,7 @@ public class EmployeeDao {
     }
 
 ////-----------------------------------------------------------------------------------------------------------
-    public List<Employee> findSearch(String loginId) {
+    public List<Employee> findSearch(String loginId, String name, String calendar1, String calendar2) {
         Connection conn = null;
         List<Employee> empList = new ArrayList<Employee>();
 
@@ -130,6 +130,17 @@ public class EmployeeDao {
             if(!loginId.equals("")) {
             	sql += " and login_id = '" + loginId + "'";
             }
+            if(!name.equals("")) {
+            	sql += " and name LIKE '%" + name + "%'";
+            }
+            if(!calendar1.equals("") && !calendar2.equals("")) {
+            	sql += " and birth_date between '" + calendar1 + "' and '" + calendar2 + "'";
+            }
+
+
+            ////" and login_id = '" + loginId + "'"とは
+
+            System.out.println(sql);
 
              // SELECTを実行し、結果表を取得
             Statement stmt = conn.createStatement();
@@ -138,20 +149,20 @@ public class EmployeeDao {
             // Employeeインスタンスに設定し、ArrayListインスタンスに追加
 
             while (rs.next()) {
-                int id = rs.getInt("id");
-                String login_id = rs.getString("login_id");
-                String name = rs.getString("name");
-                Date birth_date = rs.getDate("birth_date");
-                String password = rs.getString("password");
-                String create_date = rs.getString("create_date");
-                String update_date = rs.getString("update_date");
-                Employee employee = new Employee(id, login_id, name, birth_date, password, create_date, update_date);
-                empList.add(employee);
+	                int id = rs.getInt("id");
+	                String login_id = rs.getString("login_id");
+	                String name1 = rs.getString("name");
+	                Date birth_date = rs.getDate("birth_date");
+	                String password = rs.getString("password");
+	                String create_date = rs.getString("create_date");
+	                String update_date = rs.getString("update_date");
+	                Employee employee = new Employee(id, login_id, name1, birth_date, password, create_date, update_date);
+	                empList.add(employee);
             }
 //return new Employee(id, login_id, name, birth_date, password, create_date, update_date);
         } catch (SQLException e) {
             e.printStackTrace();
-            System.out.println("SQLException e　から　e.printStackTrace();");
+            System.out.println("SQLException e　から　e.printStackTrace();  findSearch()内のエラー");
             return null;
         } finally {
             // データベース切断
@@ -375,7 +386,7 @@ public class EmployeeDao {
         }
     }
 
-////------------------------------------------------------------------------------------------------------------
+////-------------------------------------------------------------------------------------------------------------
 
     private String ConvertMD5(String password) {
     	//ハッシュ生成前にバイト配列に置き換える際のCharset

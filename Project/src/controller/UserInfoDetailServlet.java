@@ -37,7 +37,7 @@ public class UserInfoDetailServlet extends HttpServlet {
 			throws ServletException, IOException {
 
 		HttpSession session = request.getSession();
-		Employee em = (Employee)session.getAttribute("employeeInfo");
+		Employee em = (Employee)session.getAttribute("employeeAccount");
 		if(em == null){
 				System.out.println("リダイレクト");
 				response.sendRedirect("LoginServlet");

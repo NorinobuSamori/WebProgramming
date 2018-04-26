@@ -16,7 +16,8 @@
         <nav class="navbar navbar-dark bg-dark justify-content-end">
             <span class="alignright">
                 <span class="white">
-                    ${employeeInfo.name}
+                    ${employeeAccount.name}
+<%-- 前に確認しているものを変えてみたのですが、 ${employeeList.name}の場合、どうしてエラーが発生するのでしょうか java.lang.NumberFormatException: For input string: "name" --%>
                 </span>
                 <a href="LogoutServlet" class="u-red">
                     ログアウト
@@ -28,7 +29,7 @@
         <h1 align="center">
             ユーザ一覧
         </h1>
-        <form >
+        <form action="EmployeeListServlet" method="post">
             <span class="nav justify-content-end margin2">
                 <a href="SignUpServlet">新規登録</a>
             </span>
@@ -40,7 +41,7 @@
 	                        <td>
 	                            <div class="form-group">
 	                                <label for="exampleInputEmail1"></label>
-	                                <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter ID">
+	                                <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter ID" name="login_id">
 	                            </div>
 	                        </td>
 	                    </tr>
@@ -49,7 +50,7 @@
 	                        <td>
 	                            <div class="form-group">
 	                                <label for="exampleInputEmail1"></label>
-	                                <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter ID">
+	                                <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter NAME" name="name">
 	                            </div>
 	                        </td>
 	                    </tr>
@@ -57,9 +58,9 @@
 		                    <td>生年月日</td>
 		                    <td>
 		                    	<span class="form-group">
-			                        <input type="date" name="calendar" max="9999-12-31">
+			                        <input type="date" name="calendar1" max="9999-12-31" >
 			                        ～
-			                        <input type="date" name="calendar" max="9999-12-31">
+			                        <input type="date" name="calendar2" max="9999-12-31">
 		                        </span>
 		                    </td>
 	                    </tr>
@@ -87,8 +88,8 @@
 	                </tr>
 	            </thead>
 	               <tbody>
-	               	 <c:if test="${employeeInfo.login_id == 'admin'}">
-		                 <c:forEach var="employee" items="${employeeList}" begin="1" >
+	               	 <c:if test="${employeeAccount.login_id == 'admin'}">
+		                 <c:forEach var="employee" items="${employeeList}" begin="0" >
 		                   <tr>
 		                     <td>${employee.login_id}</td>
 		                     <td>${employee.name}</td>
@@ -103,8 +104,8 @@
 		                 </c:forEach>
 		             </c:if>
 
-		             <c:if test="${employeeInfo.login_id != 'admin'}">
-		                 <c:forEach var="employee" items="${employeeList}"  begin="1">
+		             <c:if test="${employeeAccount.login_id != 'admin'}">
+		                 <c:forEach var="employee" items="${employeeList}"  begin="0">
 		                   <tr>
 		                     <td>${employee.login_id}</td>
 		                     <td>${employee.name}</td>
@@ -112,7 +113,7 @@
 		                     <!-- TODO 未実装；ログインボタンの表示制御を行う -->
 		                     <td>
 		                       <a class="btn btn-primary" href="UserInfoDetailServlet?id=${employee.id}">詳細</a>
-		                       		<c:if test="${employee.login_id == employeeInfo.login_id}">
+		                       		<c:if test="${employee.login_id == employeeAccount.login_id}">
 		                       			<a class="btn btn-success" href="UserInfoUpdateServlet?id=${employee.id}">更新</a>
 		                       		</c:if>
 		                     </td>

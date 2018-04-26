@@ -37,7 +37,7 @@ public class LoginServlet extends HttpServlet {
 
 		// TODO 未実装：ログインセッションがある場合、ユーザ一覧画面にリダイレクトさせる
 		HttpSession session = request.getSession();
-		Employee em = (Employee)session.getAttribute("employeeInfo");
+		Employee em = (Employee)session.getAttribute("employeeAccount");
 		if(em != null){
 				System.out.println("一覧リダイレクト");
 				response.sendRedirect("EmployeeListServlet");
@@ -79,7 +79,7 @@ public class LoginServlet extends HttpServlet {
 		/** テーブルに該当のデータが見つかった場合 **/
 		// セッションにユーザの情報をセット
 		HttpSession session = request.getSession();
-		session.setAttribute("employeeInfo", employee);
+		session.setAttribute("employeeAccount", employee);
 
 		// ユーザ一覧のサーブレットにリダイレクト
 		response.sendRedirect("EmployeeListServlet");

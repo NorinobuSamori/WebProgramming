@@ -30,7 +30,7 @@ public class LogoutServlet extends HttpServlet {
 		HttpSession session = request.getSession();
 
 		// ログイン時に保存したセッション内のユーザ情報を削除
-		session.removeAttribute("employeeInfo");
+		session.removeAttribute("employeeAccount");
 
 		// ログインのサーブレットにリダイレクト
 		response.sendRedirect("LoginServlet");

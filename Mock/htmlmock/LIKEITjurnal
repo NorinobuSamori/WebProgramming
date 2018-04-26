@@ -1,0 +1,819 @@
+
+ーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーー
+質問内容
+
+質問内容
+
+質問内容
+
+質問内容
+
+------------------------------------------------
+
+
+
+3.15
+
+複数のクラス内では、
+最初のメソッドに、値を出力するもの、
+
+
+
+
+
+
+質問内容
+９ー１７
+boolean result;は何を意味していますか。
+
+９－１０
+return はどこに返っているのですか。
+
+１１－６
+フィールドとクラスって何が違うのですか。
+
+「誰でもわかる Java基礎 & Javaオブジェクト指向」
+講師：IT研究所 栄一郎 荒川,プログラミング
+
+
+
+
+
+
+
+メソッド名(引数){
+	？？？？？
+	処理
+}
+
+出力用
+メソッド名(引数){
+	？？？？？
+	別クラスへ
+	別クラスへ
+	処理
+	大体print();
+}
+
+
+モニターが２つあると、
+小さい文字が読める。
+表示できるモニターが増える。
+
+boolean result = PracticeLogic16.checkChild(age);
+が入ると、
+別のクラスの読み込みへ移行する。
+ここに上記と同じboolean resultと;が入る。
+
+boolean とresultをみちしるべとして、
+mainメソッド→別クラス.メソッド→で、戻ったりするから戻り値という。
+
+
+boolean result = PracticeLogic16.checkChild(age);		別クラスへ移動
+	public static boolean checkChild(int age) {			特定されて読み込み開始
+		boolean result;									で、resultを別物として初期化。
+		return result;									//PracticeLogic16.checkChild(age);へ値を返しているらしい。
+boolean result = PracticeLogic16.checkChild(age);		main開始
+
+
+
+
+
+
+質問内容
+１１－１３
+
+public class Main {
+public static void main(String[] args) {
+	}
+}
+
+
+
+public class Merchant {
+
+    void sellItem(int count) {
+    }//ここは実は値が返っていない。変数に値を返したままで、returnできずにmainの処理に進んでいる。
+
+    String confirmMoney() {
+    }
+}
+
+
+どうしてpublicやstaticの、ある時とない時があるのでしょうか
+
+どうしてvoid sellItem(int count) {
+の段はreturnを使わないで、どこに値を返しているのでしょうか。
+
+
+
+質問内容
+１１－１３
+String confirmMoney()になっているのはなぜですか。
+
+
+
+
+
+main
+
+変数計算部門
+
+
+クラス名
+Merchant
+属性
+double　price = 100;
+double stock = 100;
+double money = 0
+引数
+戻り値
+
+メソッド名
+sellItem();
+引数
+処理
+
+メソッド名
+confirmMoney();
+引数なし
+re
+
+分かることが必ずあるということを信じろ。
+
+
+staticは、newとかを使わずにインスタンス化できるパワーアイテム。
+クラスに付けることもできる。
+
+public Calculation calcMethod(int num1, int num2) {
+		Calculation calc = new Calculation();
+		calc.add = num1 + num2;
+		calc.mul = num1 * num2;
+		return calc;
+//これで複数の戻り値を返すことができる。
+
+staticはクラス名の前に付けるものであって、メソッド名の前に付けるものではない。
+きちんとその意味を正確に理解すれば、悩む必要もなくなる。
+
+
+3.16
+スライド９－１７
+スライド１１－１３
+右画面public staticを無くした状態をスライド９－１７に再現しようとする場合、〇〇 新規の名前 = new　メソッド();をどこに入れればいいですか。
+名前をどのように付ければいいですか。
+
+「○○」、「新規の名前」それぞれ名前はなんて言うのでしょうか。
+A.クラス名、クラス名に準じた名前を付けるのが一般的。
+
+//メソッドを作成した時に、return 戻り値;を即つけるようにしよう。
+
+ランダム
+int input = new java.util.Scanner(System.in).nextInt();
+String input = new java.util.Scanner(System.in).nextLine();
+
+スライド９－１６
+
+public 付けるかどうかは、packageが違うかどうかで変わる。
+packageが違う場合、publicを入れる必要がある。
+
+
+質問内容
+９－１２
+import
+newインスタンス化
+どうして略すことができるようになっているのでしょうか
+A.
+Merchant merchant = new Merchant();
+と
+importは、使うケースが、よく見ると違う。
+
+
+new method();
+
+3.18
+別パッケージにあるクラスを呼び出す時にはクラス名の前にpublicを。
+
+アクセスの制限をコントロールするからアクセス修飾子と呼ぶ。
+アクセス修飾子には、public、protected、指定なし(デフォルト)、privateの4種類がある。
+
+スーパークラスとは、別名親クラスであり、子クラスはサブクラス。
+class 親クラス{
+	
+}
+class 子クラス名 extends 親クラス名{
+    super.親クラスのメンバ変数;
+    super.親クラスのメソッド;
+}
+というように、クラスが閉じられていて複数あり、呼び出される用が親クラス、呼び出す用が子クラスなのである。
+なお、super.();だけだと、コンストラクタを呼び出すことができる。
+
+動画(udemy)っていいな。自分に気力が無くても、勝手に進んでくれる！！！！神や！！！！！！書いてるうちにテンション上がってきたｗｗｗｗｗｗｗｗｗｗ！！！！」
+
+
+abstract class クラス名 {
+    abstract 戻り値の型名 メソッド名(引数);
+}
+
+Javaの例外とは、10/0のような、マジで例外のバグのことだった。
+
+ランダム値はjavabasic4-5にある
+
+
+3.19
+別クラスにある変数名は、クラス名.変数名;で特定して代入しないと、代入できない。
+
+us.userId = 101 ;//User().userId;ではない。
+		//メソッドはないため、us.userId(101);ではない。
+
+質問内容
+JavaBasic PT5-2が解けません
+String line = scanner.nextLine();
+どうしてStringなのでしょうか
+A.
+String line = scanner.nextLine();
+は、数字だけでなく文字列も記入できるから。
+
+質問内容
+８－３
+どこが間違っているかが分かりません。
+６－６
+訳分からないです
+
+キーボード
+String input = new java.util.Scanner(System.in).nextLine();
+int input = new java.util.Scanner(System.in).nextInt();
+
+// 下記の命令を実行すると変数cpuHandに、0以上、変数3未満の数字がランダムで代入されます
+			int cpuHand = new java.util.Random().nextInt(3);
+
+
+
+		int[][] scoreList = {
+            { 95, 88, 87 },
+            { 70, 81, 100 },
+            { 12, 98, 90 },
+            { 100, 100, 100 }  // 追加
+        };
+        for (int[] score : scoreList) {//一行目を展開。なおscoreListの値は４である。//２行目を展開。
+            int sum = 0;
+            for (int i : score) {//
+                sum += i;
+            }
+            System.out.println(sum);//forに戻る
+        }
+        270
+        251
+        200
+        300
+
+ーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーー
+ // ① int[] 型の 配列 score を作成
+    int[] score;
+ // ② 要素を5つ作って、変数 score に代入する。
+    score = new int[5];
+ //略して
+ 	int[] score = new int[5];
+ーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーー
+ // 作成した配列の4番目に値を代入します
+        score[4] = 30;
+ // 配列の中身を取得して出力します
+        System.out.println(score[4]);
+ーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーー
+  		int[] score = new int[5];
+ // 配列の各要素に値を代入
+        score[0] = 0;
+        score[1] = 1;
+        score[2] = 2;
+        score[3] = 3;
+        score[4] = 4;
+　//略して 
+		int[] score = {0, 1, 2, 3, 4};
+ーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーー
+		int[] score = {70, 98, 40, 74, 100};
+        double sum = score[0] + score[1] + score[2] + score[3] + score[4];
+		System.out.println(sum / score.length);
+		出力結果：76.4
+ーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーー
+
+
+
+// ★ int型の配列arrayを宣言して、5個の領域を確保してください
+		int[] a = new int[5];
+
+
+質問内容スライド７－２０
+それぞれどんな風に展開されていますか。
+
+ーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーー
+int[][] scoreList = {
+				{95,88,87},
+				{70,81,100},
+				{12,98,90}
+		};
+
+
+
+		for (int i = 0; i < scoreList.length; i++) {//scoreList.lengthの値は３。
+			int sum = 0;//sumの値を初期化。
+
+			int[] score =  scoreList[i];//最初に95が格納される。
+
+			for (int j = 0; j <score.length; j++) {jの最初の値は0。
+				sum += score[j];//最初は0番目の値が取り出されて、そうしてsum +=される。これをscore.lengthの回数分だけループする。
+			}//つまり、95,88,87の順に表示される。そうして、直前2つめのforへ。
+			System.out.println(sum);//最初に3回合計されたsumの出力結果が出る。
+		}//そうして最初のforへ。
+ーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーー
+for (int[] score : array) {
+            int sum = 0;
+            for (int i : score) {
+                sum += i;
+ーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーー
+// ★ int型の配列trumpを宣言し、52個の領域を確保してください
+		int[] trump = new int[52]; 
+
+		// ★ 配列trumpに、[1,2,3,4,5,・・・・,52] を代入してください
+		for(int i = 1 ; i < trump.length ; i++) {
+			trump[i] = i;
+		}
+		// ★ 0～51の中からランダムで値を取得して、変数indexに代入してください
+		int index = new java.util.Random().nextInt(52);
+
+		// ★ 配列trumpのindex番目の中に入っている数字を出力してください
+		System.out.println(trump[index]);
+ーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーー
+質問内容pt7-2
+何が起きているかがよく分かりません。A.for文の型がそもそもなっていない。他は合ってる。
+質問内容９－１
+同じパッケージ内なのに、どうしてimport文にPractice文が必要だったのですか。
+質問内容pt9-2
+どうすれば良かったでしょうか。正直何が起きたか把握しておりません。
+
+
+
+テンプレ
+java.util.Scanner scanner = new java.util.Scanner(System.in);
+
+
+String input = new java.util.Scanner(System.in).nextLine();
+int input = new java.util.Scanner(System.in).nextInt();
+ーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーー
+１・質問内容pt7-6
+二次元配列の全平均の出し方が分かりません。
+
+２．質問内容スライド１６－５
+どのタイミングでAnimalのインスタンスを実行していますか。自分の想像だとAnimal animal = new Animal();が必要だと思ってしまうのですが....
+A.
+
+３．質問内容Car、10-5
+どこが間違っているのかが分かりません。iの値と、最初がインスタンス化が間違ってる感があります。
+
+４．質問内容ｐｔ10-3
+scannerのエラーが分かりません。
+
+５．質問内容book.java、pt11-1
+Book()が作られているように見えるのですが....
+
+６．質問内容11-2
+ ReadFileClassのクラスが見つかりません。
+
+７．質問内容１１－３
+ sum();で引数を渡せません。そもそも１１－３のするべきことは何でしょうか。
+ this.numberをどうすればいいですか。
+ーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーー
+ーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーー
+１・質問内容スライド１3-9
+どうして右画面上からおおざっぱに2つ目のcompanyはthisを付けなくても値を返せているのでしょうか
+
+
+２．質問内容ｐｔ１１－２
+どうしてエラーが出ているのでしょうか。
+
+４．質問内容１０－４
+私の限界でした
+
+６．質問内容１３－１
+どうしてptraを作る必要があったのでしょうか(質問３と被る点)
+別パッケージというのは、完全に別とJavaが判断していて、pt13から書く必要があるからです。
+
+８．質問内容12-1
+getとsetを省略したかったのですが、何かいい方法は無かったのでしょうか。
+
+９．質問内容
+結局オブジェクト指向のオブジェクトって、どれを指しているのでしょうか。
+A.端的に言えばインスタンスのことです。
+
+１０．質問内容pt13-Item
+メソッド　：　各フィールドのアクセサ
+の意味がよく分かりません。
+A.getとsetのことです。
+
+質問内容１４－Course
+何をするべきかがよく分かりません。
+
+質問内容スライド１６－５
+implementsの元のinterfaceが無くてもなぜ実行できているのでしょうか。
+別クラスにclass interface Animal{があるのでしょうか
+
+ーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーー
+ １・質問内容１３－４
+ HeroはSlimeとの戦闘に勝利した
+ が必ず返ってきてしまいます。
+
+２．質問内容１３－７
+Itemで引数２つを一気に渡せません。
+
+３．質問内容１３－SuperHero
+エラーの理由が分かりません。
+equipmentが分かりません。
+addtionaldamageが分かりません。
+
+４．質問内容Employee
+Employeeのエラーの理由が分かりません。
+intの名前の付け方が分かりません。
+各フィールドのアクセサの意味がよく分かりません。
+
+６．質問内容１４－１
+エラーの理由が分かりません。
+
+
+５．質問内容
+
+７．質問内容
+ーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーー
+１・質問内容pt18-2
+toStringのエラーが結局分かりません。
+オブジェクトの検索方法をお願いします。
+
+２．質問内容pt
+
+
+３．質問内容
+
+
+
+４．質問内容
+
+６．質問内容
+
+５．質問内容
+
+７．質問内容
+ ーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーー
+ーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーー
+１・質問内容pt
+
+２．質問内容pt
+
+
+
+
+３．質問内容
+
+
+４．質問内容
+
+６．質問内容
+
+５．質問内容
+
+７．質問内容
+ ーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーー
+
+
+
+
+
+
+
+System.out.println();
+System.out.println();
+System.out.println();
+
+
+System.out.println("ユーザID（数字）、 ユーザ名、メールアドレス、パスワードをカンマ区切りで入力してください");
+
+			// ★ コマンドプロンプトに入力された値を、String型の変数lineに格納してください
+			String line = new java.util.Scanner(System.in).nextLine();
+
+			// ★ 変数lineに格納されている値を','で区切り、配列にしてください（Stringクラスのメソッドを使用します）
+			String[] a = line.split(",", 0);
+
+			// ★ 配列にした値を、users[カウント]の各フィールドに代入してください
+			// ★ ユーザIDに該当する値が数値でなかった場合は、エラーでプログラムが止まっても良いです
+			users[i] = Integer.parseInt(a[i]);
+			
+			users[0] = Integer.parseInt(a[0]);
+			users[1] = a[1];
+			users[2] = a[2];
+			users[3] = a[3];
+
+検索メソッド
+String str1 = "abc123abc123";
+String str2 = "123";    
+int result = str1.indexOf(str2);
+if (result != -1) {
+    System.out.println(result); // 3
+} else {
+    System.out.println(str2 + "は見つかりませんでした");
+}
+
+3.21
+getter と setterの違いは、データを放り込んだままか、データが返ってこないかだった。どうしてどこのサイトもそんな説明ができないのだろう。
+でも見てろよ。俺が世界を、Webプログラミングで素晴らしく変えるてやるんだからな。これが僕の一番のモチベーションだ。周囲の人との競争ではちっぽけで焦るだけだ。
+
+public class SubClass extends SuperClass {
+  // コンストラクターを定義しない
+}
+
+extendsは、abstractとかとは違い、public staticにextendsを足すだけで継承できる。interfaceとかとは違う。
+
+
+3.22
+try catch
+try {
+    例外が発生する可能性のある処理
+} catch (例外の型 引数) {
+    例外が発生した場合の処理(例外が発生しなければ行われない処理)
+} finally {//l2つ
+    例外の有無に関わらず、最後に必ず実行される処理
+}
+
+
+ーーーーーーーーーーーーーーーーーーーーーーーーーー
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
+public class Sample {
+
+	public static void main(String[] args) {
+		// 日付を読みやすい文字列形式で表示する
+		Date date = new Date();
+		SimpleDateFormat f = new SimpleDateFormat("yyyy年MM月dd日");
+		String dateStr = f.format(date);
+		System.out.println(dateStr);
+	}
+}
+
+処理結果：
+2017年07月28日
+
+
+ーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーー
+superとthisの違い。
+
+public class Main {
+    public static void main(String[] args) throws Exception {
+        
+        SubClass sub = new SubClass();
+    }
+}
+ 
+class SuperClass {
+    
+    String str = "Super";
+ 
+}
+ 
+class SubClass extends SuperClass {
+    
+    String str = "Sub";
+ 
+    public SubClass(){
+        System.out.println("super.str : " + super.str);
+        System.out.println("this.str : " + this.str);
+    }
+}
+
+[実行結果]
+super.str : Super
+this.str : Sub
+
+
+つまり、
+thisは自クラス内を参照できる
+superは、extendsで継承した先にあるsuperクラスを参照できる。
+
+どうしてどこのサイトもこんなことも言えないのだろう......みんな頭大丈夫？？？？
+
+
+
+
+ーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーー
+
+
+
+3.23
+説明がまだまだ詳細にできていないと指摘された。
+そうだなぁ～
+
+関係ない話だけど、ここ1ヶ月で、説明が下手になったんだよな～
+
+俺の最近の詰みポイント
+static
+public
+インスタンス配列
+String intとは違う、単純な型。
+
+ていうか、自分の集中力の無さが最近あだになってきた。かなりヤバイと焦りつつある。
+
+他人と同じ土俵で闘うな。自身の独壇場になれる土俵に引きずり込んで闘え。
+
+オーバーライドとオーバーライドは全然違う。
+
+
+ーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーー
+package practice18;
+
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.util.ArrayList;
+import java.util.Scanner;
+
+import entity.Player;
+
+public class PTra18_02 {
+
+	/*
+	 * ★ BestElevenCandidate.csvの情報を保持するためのクラス、entity.Playerクラスを作成してください
+	 *
+	 * フィールド
+	 * 		position	：	String
+	 * 		name		：	String
+	 * 		country		：	String
+	 * 		team		：	String
+	 * メソッド
+	 * 		各アクセサ
+	 *
+	 * 		toString()	：	Objectクラスのオーバーライド
+	 * 		各フィールドの値を、カンマ区切りの文字列で取得する
+	 */
+
+
+	public static void main(String[] args) {
+
+		/*
+		 * entity.Playerの作成後に行ってください
+		 *
+		 * ★ file/BestElevenCandidate.csvの内容を取得し、１行毎にPlayerインスタンスに情報を格納してください
+		 * ★ ArrayListを作成して、Playerインスタンスを格納してください
+		 */
+		 ArrayList<Player> array = new ArrayList<>();
+	        try(Scanner scanner = new Scanner(new File("file/BestElevenCandidate.csv"))) {
+	            while (scanner.hasNext()) {
+	                String line = scanner.nextLine();
+	                // ★ 1行ごとにArrayListに格納してください
+
+	                Player pl = new Player();////10-4,13-9参照する可能性あり
+	                ArrayList<Player> pl2 = new ArrayList<>();
+	                String[] succer = line.split(",", -1);
+	                
+//	                for(int i = 0 ; i < succer.length ; i++) {
+	                
+		                pl.setPosition(succer[0]);////pl.positionではない。
+		                pl.setName(succer[1]);
+		                pl.setCountry(succer[2]);
+		                pl.setTeam(succer[3]);
+		                
+		                
+		                array.add(pl);
+	                //}
+
+	                //////pt11-FileReaderClassを参照する可能性あり
+////Playerの型にはインスタンスしか入らない。文字列も入らない。Item型の時には、実はインスタンスが入っていた。
+	            }
+	        } catch (FileNotFoundException e) {
+	            System.out.println("ファイルが見つかりません");
+	        }
+	        
+	        
+		// ★ ArrayListに格納されているインスタンス全てのtoStringメソッドを実行し、出力してください
+		// ※ できれば拡張for文を使いましょう
+
+	    ///////////////
+	        for(int b = 0;b < array.size();b++){
+	            System.out.println(array.get(b).toString());////.toString()が勝手に起動しているらしい。
+	        }
+		///////////////
+
+	}
+
+}
+
+ーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーー
+4.2
+
+ーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーー
+質問内容
+ユーザー一覧の？部分のタグが分からなくてハゲそうです。
+
+質問内容
+ユーザ一覧の箇所の<button type="submit" align="right">検索</button>
+と
+上
+で、、中央に揃えたり、右端に揃えたりすることが失敗しております。
+
+質問内容
+ユーザ情報更新
+パスワードのレイアウトが崩れてしまい、高さを揃える方法が思いつきません。
+
+
+------------------------------------------------
+
+質問内容
+marginのコツが少々掴めません
+
+質問内容
+テーブルを使わないで揃える方法を知りたいです
+
+---------------------------------------------------
+質問内容
+ユーザ一覧の検索の部分の空白は、これもmarginでしょうか
+
+
+Mockおわりました
+
+---------------------------------------------------
+
+mysql> 
+CREATE DATABASE rezodb DEFAULT CHARACTER SET utf8;
+
+mysql>
+Query OK, 1 row affected (x.xx sec)
+
+mysql>
+
+------------------------------------------------------------------------------------
+DriverManager.getConnection("jdbc:mysql://localhost:3306/example?useUnicode=true&characterEncoding=utf8", "root", "password");
+
+CREATE DATABASE user DEFAULT CHARACTER SET utf8;
+
+select * from user;
+
+
+
+CREATE TABLE user2 (
+user_id int PRIMARY KEY,
+login_id varchar(20) UNIQUE NOT NULL,
+user_name varchar(20) NOT NULL,
+e_mail varchar(100) UNIQUE NOT NULL,
+tel varchar(13) NOT NULL,
+remarks varchar(100)
+);
+
+
+
+問題１
+CREATE TABLE item_category (
+category_id SERIAL,
+category_name varchar(256) NOT NULL
+);
+
+問題２
+CREATE TABLE item (
+item_id int PRIMARY KEY,
+item_name varchar(256) NOT NULL,
+item_price int NOT NULL,
+category_id int
+);
+
+問題３
+INSERT item_category SET category_id=1, category_name='家具';
+INSERT item_category SET category_id=2, category_name='食品';
+INSERT item_category SET category_id=3, category_name='本';
+
+
+問題４
+INSERT item SET item_id=1, item_name='堅牢な机', item_price=3000,category_id=1;
+INSERT item SET item_id=2, item_name='生焼け肉', item_price=50,category_id=2;
+INSERT item SET item_id=3, item_name='すっきりわかるJava入門', item_price=3000,category_id=3;
+INSERT item SET item_id=4, item_name='おしゃれな椅子', item_price=2000,category_id=1;
+INSERT item SET item_id=5, item_name='こんがり肉', item_price=500,category_id=2;
+INSERT item SET item_id=6, item_name='書き方ドリルSQL', item_price=2500,category_id=3;
+INSERT item SET item_id=7, item_name='ふわふわのベッド', item_price=30000,category_id=1;
+INSERT item SET item_id=8, item_name='ミラノ風ドリア', item_price=300,category_id=2;
+
+問題５
+select item_name,item_price from item where category_id = 1;
+
+問題６
+select item_name,item_price from item where item_price>=1000;
+
+問題７
+select item_name,item_price from item where item_name LIKE '%肉%';
+
+問題８
+  select item_id,item_name,item_price,category_name
+  from  item INNER JOIN item_category 
+  on item.category_id =  item_category.category_id      ;
+
+問題９
+ select  sum(item_price) AS total_price  , category_name
+  from  item INNER JOIN item_category 
+  on item.category_id =  item_category.category_id      
+ GROUP BY item.category_id
+ ORDER BY total_price DESC;
+ ---------------------------------------------------------------------------
+
+ 
+

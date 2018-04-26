@@ -15,7 +15,7 @@
         <nav class="navbar navbar-dark bg-dark justify-content-end">
             <span class="alignright">
                 <span class="white">
-                    ${employeeInfo.name}
+                    ${employeeAccount.name}<%-- employeeListと型が違っていたりするので注意 --%>
                 </span>
                 <a href="LogoutServlet" class="u-red" >
                     ログアウト
