@@ -42,7 +42,7 @@ public class EmployeeDao {
 
 
 
-             // 主キーに紐づくレコードは1件のみなので、rs.next()は1回だけ行う
+             // 主キーに紐づくレコードは1件のみなので、rs.next()は1回だけ行う///一個も取れなかった時
             if (!rs.next()) {
                 return null;
             }
@@ -189,7 +189,8 @@ public class EmployeeDao {
 
             // SELECT文を準備
 //非推奨            String sql = "SELECT id, name, age FROM employee WHERE id = " + targetId;
-            String sql = "INSERT INTO user (login_id, name, password, birth_date, create_date, update_date) VALUES (?, ?, ?, ?, now(), now())";
+            String sql = "INSERT INTO user (login_id, name, password, birth_date, create_date, update_date) "
+            		+ "VALUES (?, ?, ?, ?, now(), now())";
 
 
 

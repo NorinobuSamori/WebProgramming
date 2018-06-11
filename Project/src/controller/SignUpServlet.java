@@ -34,9 +34,11 @@ public class SignUpServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 
+
 		// TODO 未実装：ログインセッションがない場合、ログイン画面にリダイレクトさせる
 		HttpSession session = request.getSession();
-		Employee em = (Employee)session.getAttribute("employeeInfo");
+		Employee em = (Employee)session.getAttribute("employeeAccount");
+		System.out.println("(SignUpServlet1のem)=" + em);
 		if(em == null){
 				System.out.println("リダイレクト");
 				response.sendRedirect("LoginServlet");

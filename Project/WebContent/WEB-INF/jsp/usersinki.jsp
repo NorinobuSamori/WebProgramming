@@ -26,6 +26,11 @@
         <br>
         <br>
         <h1 align="center">ユーザ新規登録</h1>
+        <c:if test="${errMsg != null}" >
+	    	<div class="alert alert-danger" role="alert">
+		  		${errMsg}
+			</div>
+		</c:if>
         <br>
         <br>
 

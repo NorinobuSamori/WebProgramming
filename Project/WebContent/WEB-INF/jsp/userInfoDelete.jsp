@@ -35,7 +35,7 @@
         <br>
             <form action="EmployeeListServlet" method="get">
                 <button type="submit" class="marginall" name="cancel"><span class="margin2">キャンセル</span></button>
-            </form>
+            <form action="EmployeeListServlet" method="get">
             <form action="UserInfoDeleteServlet" method="post">
                 <input type="hidden" class="marginall" name="id" value="${employeeInfo.id}"><!-- name="id"が必要だった なお、OKボタンは合ってた -->
                 <button type="submit" class="marginall"><span class="margin2">ＯＫ</span></button>
